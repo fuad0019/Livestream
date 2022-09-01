@@ -137,47 +137,7 @@
 
 
   </script>
-  <script language="javascript">
-    var popupWindow = null;
-    function centeredPopup(url, winName, w, h, scroll) {
-      LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
-      TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
-      settings =
-        'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
-      popupWindow = window.open(url, winName, settings)
-    }
-
-    function remove(el) {
-      var element = el;
-      element.remove();
-    }
-
-    function cloneVideoElement() {
-      var video = document.querySelector('video');
-      return video.cloneNode();
-    }
-
-
-
-    function handleClickOverlay(el, url, winName, w, h, scroll) {
-      centeredPopup(url, winName, w, h, scroll);
-      var video2 = cloneVideoElement()
-      document.querySelector('.grid-container').appendChild(video2)
-      remove(el)
-      addVideoSrc()
-
-    }
-  </script>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJRL72E24J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CJRL72E24J');
-</script>
+ 
 </body>
 
 </html>
