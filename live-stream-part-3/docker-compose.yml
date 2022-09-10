@@ -16,7 +16,6 @@ services:
   auth:
     build: ./auth
     container_name: auth
-
     restart: always
   frontend:
     build: ./frontend
