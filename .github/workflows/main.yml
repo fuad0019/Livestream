@@ -1,4 +1,4 @@
-name: LiveStream
+name: LiveStream-workflow
 on:
   push:
     branches:
