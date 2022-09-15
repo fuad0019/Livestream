@@ -1,11 +1,11 @@
-if [ ! "$(docker ps -q -f name=rtmp_server)" ]; then
+if [ "$(docker ps -q -f name=rtmp_server)" ]; then
         # cleanup
     docker stop rtmp_server
     docker rm rtmp_server
 
 fi
 
-if [ ! "$(docker ps -q -f name=frontend)" ]; then
+if [ "$(docker ps -q -f name=frontend)" ]; then
         # cleanup
     docker stop frontend
     docker rm frontend
@@ -13,7 +13,7 @@ if [ ! "$(docker ps -q -f name=frontend)" ]; then
 fi
 
 
-if [ ! "$(docker ps -q -f name=auth)" ]; then
+if [ "$(docker ps -q -f name=auth)" ]; then
         # cleanup
     docker stop auth
     docker rm auth
