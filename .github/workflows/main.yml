@@ -37,8 +37,10 @@ jobs:
         with:
           name: code
           path: .
-      - name: Take down containers
-        run: docker-compose down
+      - name: stop all containers
+        run: docker stop $(docker ps -a -q)
+      - name: Take down all containers
+        run: docker rm $(docker ps -a -q)
       - name: Deploy docker containers
         run: docker-compose up -d
 
