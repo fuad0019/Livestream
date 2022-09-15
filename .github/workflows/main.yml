@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         os: [linux]
-        version: [node1, node2, node3]
-    runs-on: [${{ matrix.os }},${{ matrix.label }}]
+        version: [node1, node2, node3,node3]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Clone-down
         uses: actions/checkout@v2
