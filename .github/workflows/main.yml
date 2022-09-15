@@ -28,8 +28,8 @@ jobs:
     strategy:
       matrix:
         os: [linux]
-        label: [node1, node2, node3]
-    runs-on: [${{ matrix.os }},${{ matrix.label }}]
+        version: [node1, node2, node3,node3]
+    runs-on: ${{ matrix.os }}
     needs: [Clone-down]
     steps:
       - name: Download Repo
