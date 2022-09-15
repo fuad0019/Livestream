@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [linux]
-        label: [10, 12, 14]
+        label: [node1, node2, node3]
     runs-on: [${{ matrix.os }},${{ matrix.label }}]
     steps:
       - name: Clone-down
@@ -25,7 +25,11 @@ jobs:
           name: code
           path: code.tar
   Deploy-Dev:
-    runs-on: [node1,node2,node3,node4]
+    strategy:
+      matrix:
+        os: [linux]
+        label: [node1, node2, node3]
+    runs-on: [${{ matrix.os }},${{ matrix.label }}]
     needs: [Clone-down]
     steps:
       - name: Download Repo
