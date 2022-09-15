@@ -9,7 +9,11 @@ env: # Set the secret as an input
   GIT_COMMIT: ${{ github.sha }}
 jobs:
   Clone-down:
-    runs-on: [node1,node2,node3,node4]
+    strategy:
+      matrix:
+        os: [linux]
+        label: [10, 12, 14]
+    runs-on: [${{ matrix.os }},${{ matrix.label }}]
     steps:
       - name: Clone-down
         uses: actions/checkout@v2
