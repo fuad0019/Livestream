@@ -1,18 +1,37 @@
-name: Docker Image CI
-
+name: LiveStream
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
+    branches:
+      - main  
+env: # Set the secret as an input
+  docker_username: ${{ secrets.DOCKER_USERNAME }}
+  docker_password: ${{ secrets.DOCKER_TOKEN  }}
+  GIT_COMMIT: ${{ github.sha }}
 jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
+  Clone-down:
+    runs-on: [node1,node2,node3,node4]
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Clone-down
+        uses: actions/checkout@v2
+      - name: Tar file
+        run: tar -cvf code.tar .
+      - name: Upload Repo
+        uses: actions/upload-artifact@v2
+        with:
+          name: code
+          path: code.tar
+  Deploy-Dev:
+    runs-on: [node1,node2,node3,node4]
+    needs: [Docker-image]
+    steps:
+      - name: Download Repo
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+      - name: Take down containers
+        run: docker-compose down
+      - name: Deploy docker containers
+        run: docker-compose up -d
+
+

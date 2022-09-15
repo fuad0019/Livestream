@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  rtmp:
+    build: ./rtmp
+    ports:
+      - "1935:1935"
+      - "80:8080"
+    container_name: rtmp_server
+    volumes:
+      - ./data:/tmp/hls
+      - ./data2:/tmp/hls2
+    depends_on:
+          - auth
+          - frontend
+    restart: always
+  auth:
+    build: ./auth
+    container_name: auth
+    restart: always
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    expose:
+          - "3000"
+    restart: always
+    volumes:
+      - ./frontend:/usr/src/app
