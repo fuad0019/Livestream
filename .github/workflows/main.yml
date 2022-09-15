@@ -22,7 +22,7 @@ jobs:
           path: code.tar
   Deploy-Dev:
     runs-on: [node1,node2,node3,node4]
-    needs: [Docker-image]
+    needs: [Clone-down]
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
