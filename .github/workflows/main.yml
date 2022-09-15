@@ -38,9 +38,7 @@ jobs:
           name: code
           path: .
       - name: stop all containers
-        run: docker stop $(docker ps -a -q)
-      - name: Take down all containers
-        run: docker rm $(docker ps -a -q)
+        run: chmod +x ci\stop-containers.sh && ci\stop-containers.sh
       - name: Deploy docker containers
         run: docker-compose up -d
 
