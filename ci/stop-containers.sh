@@ -1,6 +1,12 @@
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+if [ "$(docker ps -q)" ]; then
+        # cleanup
+        docker stop $(docker ps -a -q)
+        docker rm $(docker ps -a -q)
 
-docker rmi $(docker images -a -q)
+fi
 
+if [ "$(docker images -a -q)" ]; then
+        # cleanup
+    docker rmi $(docker images -a -q)
+fi
 
