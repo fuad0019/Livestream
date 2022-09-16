@@ -41,5 +41,15 @@ jobs:
         run: chmod +x ci/stop-containers.sh && ci/stop-containers.sh
       - name: Deploy docker containers
         run: docker-compose up -d
+    Test: 
+      strategy:
+        matrix:
+          os: [linux]
+          version: [node1, node2, node3,node3]
+      runs-on: ${{ matrix.os }}
+      needs: [Clone-down]
+      steps:
+        - name: test availability of frontend
+          run: chmod +x ci/test-app.sh && ci/test-app.sh
 
 

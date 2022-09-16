@@ -1,6 +1,6 @@
 #! /bin/bash
 echo "testing frontend"
-url=$("<ENTER URL HERE>")
+url=$("http://localhost:3000")
 result=$(curl --write-out %{http_code} --silent --output /dev/null $url)
 
 if [ “$result” == “200” ] ; then
