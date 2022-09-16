@@ -40,7 +40,7 @@ jobs:
       - name: stop all containers, remove all images
         run: chmod +x ci/stop-containers.sh && ci/stop-containers.sh
       - name: Deploy docker containers
-        run: docker-compose up -d
+        run: docker-compose up 
   Test: 
       strategy:
         matrix:
