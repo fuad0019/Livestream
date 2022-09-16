@@ -7,6 +7,6 @@ fi
 
 if [ "$(docker images -a -q)" ]; then
         # cleanup
-    docker rmi $(docker images -a -q)
+    docker rmi -f $(docker images -a -q)
 fi
 
