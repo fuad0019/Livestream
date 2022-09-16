@@ -37,7 +37,7 @@ jobs:
         with:
           name: code
           path: .
-      - name: stop all containers
+      - name: stop all containers, remove all images
         run: chmod +x ci/stop-containers.sh && ci/stop-containers.sh
       - name: Deploy docker containers
         run: docker-compose up -d
