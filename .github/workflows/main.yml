@@ -41,7 +41,7 @@ jobs:
         run: chmod +x ci/stop-containers.sh && ci/stop-containers.sh
       - name: Deploy docker containers
         run: docker-compose up -d
-    Test: 
+  Test: 
       strategy:
         matrix:
           os: [linux]
