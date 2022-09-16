@@ -1,12 +1,24 @@
-if [ "$(docker ps -q)" ]; then
+if [ "$(docker ps -q -f name=rtmp_server)" ]; then
         # cleanup
-        docker stop $(docker ps -a -q)
-        docker rm $(docker ps -a -q)
+        docker stop rtmp_server
+        docker rm rtmp_server
+        docker rmi -f livestream_rtmp
+
 
 fi
 
-if [ "$(docker images -a -q)" ]; then
+if [ "$(docker ps -q -f name=frontend)" ]; then
         # cleanup
-    docker rmi -f $(docker images -a -q)
+        docker stop frontend
+        docker rm frontend
+        docker rmi -f livestream_frontend
 fi
 
+
+if [ "$(docker ps -q -f name=auth)" ]; then
+        # cleanup
+        docker stop auth
+        docker rm auth
+        docker rmi -f livestream_auth
+
+fi
